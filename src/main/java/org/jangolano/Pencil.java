@@ -21,9 +21,10 @@ public class Pencil {
 
     public void sharpen(){
         point = 500;
+        length-=1;
     }
 
     public int getLength(){
-        return 0;
+        return length;
     }
 }
