@@ -16,4 +16,12 @@ public class PencilTest {
         pencil.write("ABCDEFG");
         assertEquals(pencil.getPoint(),493);
     }
+
+    @Test
+    public void testPencilSharpen(){
+        Pencil pencil = new Pencil();
+        pencil.write("ABCDEFG");
+        pencil.sharpen();
+        assertEquals(pencil.getPoint(), 500);
+    }
 }

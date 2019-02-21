@@ -16,4 +16,8 @@ public class Pencil {
     public int getPoint(){
         return point;
     }
+
+    public void sharpen(){
+
+    }
 }
