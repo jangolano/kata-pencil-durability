@@ -10,4 +10,10 @@ public class PencilTest {
         Pencil pencil = new Pencil();
         assertEquals(pencil.write("ABCD"), "ABCD");
     }
+    @Test
+    public void testPencilWritePointDegradation(){
+        Pencil pencil = new Pencil();
+        pencil.write("ABCDEFG");
+        assertEquals(pencil.getPoint(),493);
+    }
 }

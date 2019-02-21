@@ -9,4 +9,8 @@ public class Pencil {
     public String write(String text){
         return text;
     }
+
+    public int getPoint(){
+        return 0;
+    }
 }
