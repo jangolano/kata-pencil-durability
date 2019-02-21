@@ -18,6 +18,6 @@ public class Pencil {
     }
 
     public void sharpen(){
-
+        point = 500;
     }
 }
