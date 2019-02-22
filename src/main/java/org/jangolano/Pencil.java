@@ -50,6 +50,16 @@ public class Pencil {
     }
 
     public void erase(String text){
+        char [] textToBeWritten = text.toCharArray();
+        StringBuffer textToWrite = new StringBuffer();
 
+        for(int i=0;i<textToBeWritten.length;i++){
+            if(eraser>0) {
+                eraser-=1;
+                textToWrite.append(textToBeWritten[i]);
+            }else{
+                break;
+            }
+        }
     }
 }
