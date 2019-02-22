@@ -40,7 +40,7 @@ public class PencilTest {
         for(int i=0;i<=21;i++){
             pencil.sharpen();
         }
-        assertEquals(pencil.length, 0);
+        assertEquals(pencil.getLength(), 0);
         assertEquals(pencil.getPoint(), 0);
     }
 

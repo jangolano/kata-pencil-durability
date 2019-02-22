@@ -1,38 +1,63 @@
 package org.jangolano;
+class Pencil {
 
-import java.util.ArrayList;
+    private  Integer point=500;
+    private  Integer length=20;
+    private  Integer eraser=500;
 
-public class Pencil {
+    enum DurabilityType{POINT, ERASER}
 
-    int point;
-    int length;
-    int eraser;
     Pencil(){
-        point = 500;
-        length = 20;
-        eraser = 500;
     }
 
-    public String write(String text){
-        char [] textToBeWritten = text.toCharArray();
-        StringBuffer textToWrite = new StringBuffer();
+    String write(String text){
+        return textToBeChanged(text, DurabilityType.POINT);
+    }
 
-        for(int i=0;i<textToBeWritten.length;i++){
-            if(point>0) {
-                point-=1;
-                textToWrite.append(textToBeWritten[i]);
-            }else{
+
+    private String textToBeChanged(String text, DurabilityType value){
+        char [] textToBeWritten = text.toCharArray();
+        StringBuilder textToWrite = new StringBuilder();
+
+        int objectDurability=0;
+
+        objectDurability = getObjectDurability(value, objectDurability);
+
+        for (char c : textToBeWritten) {
+            if (objectDurability > 0) {
+                objectDurability -= 1;
+                textToWrite.append(c);
+            } else {
                 break;
             }
         }
+        setObjectDurabilityValue(value, objectDurability);
         return textToWrite.toString();
     }
 
-    public int getPoint(){
+    private void setObjectDurabilityValue(DurabilityType value, int objectDurability) {
+        if(value== DurabilityType.ERASER){
+            eraser = objectDurability;
+        }
+        else if(value == DurabilityType.POINT){
+            point = objectDurability;
+        }
+    }
+
+    private int getObjectDurability(DurabilityType value, int objectDurability) {
+        if(value== DurabilityType.ERASER){
+            objectDurability=eraser;
+        }else if(value == DurabilityType.POINT){
+            objectDurability=point;
+        }
+        return objectDurability;
+    }
+
+    int getPoint(){
         return point;
     }
 
-    public void sharpen(){
+    void sharpen(){
         if(length!=0) {
             point = 500;
             length -= 1;
@@ -41,25 +66,16 @@ public class Pencil {
         }
     }
 
-    public int getLength(){
+    int getLength(){
         return length;
     }
 
-    public int getEraser(){
+    int getEraser(){
         return eraser;
     }
 
-    public void erase(String text){
-        char [] textToBeWritten = text.toCharArray();
-        StringBuffer textToWrite = new StringBuffer();
-
-        for(int i=0;i<textToBeWritten.length;i++){
-            if(eraser>0) {
-                eraser-=1;
-                textToWrite.append(textToBeWritten[i]);
-            }else{
-                break;
-            }
-        }
+    void erase(String text){
+        textToBeChanged(text, DurabilityType.ERASER);
     }
+
 }
