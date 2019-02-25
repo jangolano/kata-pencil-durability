@@ -8,6 +8,6 @@ class Paper {
     }
 
     String getText(){
-        return "";
+        return stringBuilder.toString();
     }
 }
