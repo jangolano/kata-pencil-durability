@@ -1,7 +1,7 @@
 package org.jangolano;
 
 class Paper {
-    StringBuilder stringBuilder = new StringBuilder();
+    private StringBuilder stringBuilder = new StringBuilder();
 
     void appendText(String text){
         stringBuilder.append(text);
