@@ -10,4 +10,9 @@ class Paper {
     String getText(){
         return stringBuilder.toString();
     }
+
+    void setText(String text){
+        stringBuilder.delete(0, stringBuilder.length());
+        stringBuilder.append(text);
+    }
 }

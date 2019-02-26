@@ -1,4 +1,7 @@
 package org.jangolano;
+
+import org.apache.commons.lang.StringUtils;
+
 class Pencil {
 
     private  Integer point=500;
@@ -10,8 +13,8 @@ class Pencil {
     Pencil(){
     }
 
-    String write(String text){
-        return textToBeChanged(text, DurabilityType.POINT);
+    void write(Paper paper, String text){
+        paper.appendText(textToBeChanged(text, DurabilityType.POINT));
     }
 
 
@@ -74,8 +77,28 @@ class Pencil {
         return eraser;
     }
 
-    void erase(String text){
-        textToBeChanged(text, DurabilityType.ERASER);
+    void erase(Paper paper, String text){
+        String filler = StringUtils.repeat(" ", textToBeChanged(text, DurabilityType.ERASER).length());
+        String paperText = paper.getText();
+        paperText = paperText.replace(text, filler);
+        paper.setText(paperText);
     }
+
+    void edit(Paper paper, String toErase, String newText){
+        String paperText = paper.getText();
+        int index = paperText.indexOf(toErase);
+        erase(paper, toErase);
+        char [] updatedText = paper.getText().toCharArray();
+        for (Character c: newText.toCharArray()){
+            if(updatedText[index]  == ' '){
+                updatedText[index] = c ;
+            }else{
+                updatedText[index] = '@';
+            }
+            index++;
+        }
+        paper.setText(new String(updatedText));
+    }
+
 
 }
